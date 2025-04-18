@@ -4,8 +4,11 @@ const addBugs = async (req, res) => {
     const bugdata = req.body;
     console.log(bugdata);
     try{
-        if(!bugdata || Object.keys(bugdata).length === 0){
+        if(!bugdata || Object.keys(bugdata).length != 3){
             return res.status(400).json({message: 'No data provided'});
+        }
+        if(Object.keys(bugdata)==='priorty' &&bugdata.priorty < 1 && bugdata.priorty > 5){
+            return res.status(400).json({message: 'Priorty should be between 1 and 5'});
         }
         const newbug = new dbmodel(bugdata);
         await newbug.save();

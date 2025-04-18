@@ -5,14 +5,15 @@ import getBugs from './controllers/getBugs.js';
 import addBugs from './controllers/addBugs.js';
 import dotenv from 'dotenv';
 
+dotenv.config();
 
 const app = express();
 app.use(cors({
     origin: 'http://localhost:3000',
-    withCredentials: true,
+    credentials: true
 }));
 app.use(express.json());
-dotenv.config();
+
 
 mongo();
 
